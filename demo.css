@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+header, hgroup, section, nav, footer {
+  display: block;
+}
+
+body {
+  background: #fff;
+  color: #000;
+  line-height: 0.9;
+  padding: 1em;
+  width: 50em;
+  max-width: 90%;
+  margin: auto;
+  font-family: "Geomancy", "Avenir Medium", "Avenir LT Std 65 Medium", "Century Gothic", "Futura", "ITC Avant Garde Gothic", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+header h1, .red {
+  color: #c72127;
+}
+
+header h2, .white {
+  color: #000;
+  color: rgba( 255, 255, 255, 1 );
+  text-shadow: 
+    -1px -1px 0 #000,
+     0   -1px 0 #000,
+     1px -1px 0 #000,
+     1px  0   0 #000,
+     1px  1px 0 #000,
+     0    1px 0 #000,
+    -1px  1px 0 #000,
+    -1px  0   0 #000;
+}
+
+.half {
+  float: left;
+  width: 49%;
+}
+
+.half.first {
+  margin-right: 1%;
+}
+
+.half.last {
+  margin-left: 1%;
+}

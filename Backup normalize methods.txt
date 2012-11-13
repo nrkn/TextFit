@@ -1,0 +1,58 @@
+if( config.normalizeLineHeight ) {
+      var matchedElements = $( this );
+      //this is just so dubious, no way of knowing what metrics different fonts use, different browsers, different OS...
+      //still, I guess mark this option as "experimental" and let authors use it at their peril!
+      var topMultiplier = 25.997 / config.normalizeAmount;
+      var bottomMultiplier = 21.106 / config.normalizeAmount;
+      var marginTop = 0;
+      this.each(function() {
+        var element = $( this );
+        var index = element.index();
+        var first = index == 0;
+        var last = index == matchedElements.length - 1;
+        var height = element.height();
+
+        if( config.normalizeMethod == 1 ) {
+          var top = ( height * topMultiplier ) / 100;
+          var bottom = ( height * bottomMultiplier ) / 100;
+          var newHeight = height - Math.ceil( top + bottom );
+          element.css({ height: newHeight + "px"});
+          var wrapperClass = "textfit-inner-" + index;
+          element.wrapInner( '<span class="' + wrapperClass + '" />' );
+          $( "." + wrapperClass ).css({ display: "block", position: "relative", top: -top + "px", margin: 0, padding: 0 });
+          return;
+        } else if( config.normalizeMethod == 2 ) {
+          if( !first ) {
+            var previousElement = $( matchedElements.get( index - 1 ) );
+            var previousHeight = previousElement.height();
+            marginTop += Math.floor( ( ( height * topMultiplier ) + ( previousHeight * bottomMultiplier ) ) / 100 );
+            element.css({ position: "relative", top: -marginTop + "px" });
+          }
+          if( last ) {
+            element.parent().height( element.parent().height() - marginTop );
+          }
+          return;
+        } else if( config.normalizeMethod == 3 ) {
+          // var offsetTop;
+          // if( first ) {
+            // offsetTop = Math.floor( ( height * topMultiplier ) / 100 );
+          // } else {
+            // var previousElement = $( matchedElements.get( index - 1 ) );
+            // var previousHeight = previousElement.height();
+            // offsetTop = Math.floor( ( ( height * topMultiplier ) + ( previousHeight * bottomMultiplier ) ) / 100 );
+          // }
+          // marginTop += offsetTop;
+          // element.css({ position: "relative", top: -marginTop + "px", marginBottom: -offsetTop + "px" });
+          // return;
+        }
+      
+        var top = ( height * topMultiplier ) / 100;
+        var bottom = ( height * bottomMultiplier ) / 100;
+        var newHeight = height - Math.ceil( top + bottom );
+        element.css({ height: newHeight + "px" });
+        var wrapperClass = "textfit-inner-" + index;
+        element.wrapInner( '<div class="' + wrapperClass + '" />' );
+        $( "." + wrapperClass ).css({ position: "relative", top: -top + "px" });
+        return;
+      });
+    }

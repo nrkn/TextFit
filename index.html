@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>textFit</title>
+    <style type="text/css">
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      
+      body {
+        background: #fff;
+        color: #333;
+        font-family: "Arial", "Helvetica", sans-serif;
+        line-height: 0.9;
+        padding: 2%;
+      }
+      
+      h1, .column {
+        font-family: "Avenir", "Century Gothic", sans-serif;
+        text-transform: uppercase;
+      }
+      
+      .column {
+        background: #fbfbfb;
+        border: 1px solid #f0f0ff;
+        float: left;
+        font-weight: bold;
+        margin: 2em 0;
+        margin-left: -2px;
+        cursor: pointer;
+      }
+           
+      .column, a {
+        color: #4688e7;
+      }
+      
+      p {
+        clear: left;
+        margin-top: 2em;
+      }
+    </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script src="http://static.tumblr.com/xanrkca/9iTl6m5f9/jquery.ba-resize.min.js"></script>
+    <script src="http://static.tumblr.com/xanrkca/c7gl6m97y/jquery.ia.textfit.js"></script>
+    <!--[if lte IE 8]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <script>
+      $(function(){
+        var columns = 6;
+        for( var i = 1; i <= columns ; i++ ) {
+          var columnClass = "column column" + i;
+          $( "#columnContainer" ).append( '<div class="' + columnClass + '" />' );
+          
+          var columnCss = { marginRight: i == columns ? 0 : 1.5 + "%", width: ( 100 / columns ) - 1.5 + "%" }; 
+
+          if( i == 0 ) {
+            $.extend( columnCss, { marginLeft: 0 } );  
+          } 
+          
+          $( ".column" + i ).css( columnCss );          
+        }
+        
+        function setColumnText() {
+          var words = "Sed nisl plaga abbas abbas nisl reprobo jugis duis aliquam te epulae wisi Ullamcorper secundum gravis quis gemino quae hendrerit lobortis ea foras tum letalis metuo Si sed abbas qui ibidem rusticus secundum abbas tego aptent accumsan augue natu Tation distineo quis brevitas consequat virtus valde epulae fere qui tego consequat Iriure te validus gilvus secundum enim nullus eligo Persto quidne meus aliquam defui euismod ut duis luptatum saluto transverbero dolore facilisi Tamen nibh esse sagaciter feugiat ibidem gravis delenit validus magna plaga pala Crystals shine quenches fast escape smile treat premium delectable you gigantic out wealth quick This vinyl double rated awesome secure every by opportunity gigantic mega well Plus buy original compact absorbent crystals warranty low-cost expensive Just invigorate most delectable any pennies generous newest accomodations whiter advertising brighter newer grab Diplomatatic cutlery luxury le ladies wealth cocktail ladies Silver ornamental architectural rich with aristocratic accredited world cuisine Ich footzerstompen noodle kaputt ker handercloppen und mitz Backbone deviation prototype for remote extended element potentiometer application Logistically adaptive dithering remote reducer log computer arrray messaging prompt Converter partitioned with phase broadband silicon system Includes phase system element mainframe reflective distributed audio scalar sampling Network port boolean application port broadband solution led Phaselock normalizing internet silicon sequential arrray in metafile scan disk bypass With fragmentation internet coordinated backbone remote";
+          
+          var wordCollection = words.split( ' ' );
+          for( var column = 1; column <= columns; column++ ) {
+            $( ".column" + column ).html("");
+            for( var i = 0; i < 3; i++ ) {
+              var length = 1;
+              if( Math.floor( Math.random() * 5 ) == 0 ) length++;
+              var sentence = "";
+              for( var j = 0; j < length; j++ ) {
+                sentence += wordCollection[ Math.floor( Math.random() * wordCollection.length ) ];
+                if( j != length - 1 ) sentence += " ";
+              }
+              $( ".column" + column ).append( "<span>" + sentence + "</span>" );
+            }
+          }
+        }
+
+        $( ".column" ).click(
+          setColumnText
+        );
+        
+        $( ".column" ).click();
+        
+        function fit() {
+          $( ".column" ).unbind( "resize" );
+          $( "span" ).textFit();
+          $( ".column" ).bind( "resize", fit );
+        }
+        
+        fit();
+      });
+    </script>
+  </head>
+  <body> 
+    <h1><span>The text always</span> <span>fits the available width</span></h1>
+    <p><span>Click any of the sample boxes below to see the effect with different random text:</span></p>
+    <div id="columnContainer">
+    </div>
+    <p>
+      <span>TextFit jQuery plugin © 2010 <a href="http://nrkn.tumblr.com/">nrkn</a>, also using Ben Alman's excellent 
+      <a href="http://benalman.com/projects/jquery-resize-plugin/">resize events plugin</a>.</span>
+    </p>
+    <p>
+      <span>The TextFit plugin is not finished which is why there is no download but you can always just steal it from this page.</span>
+    </p>
+    <p>
+      <span>The line normalization option doesn't work correctly and there may be other issues too.</span>
+    </p>
+  </body>
+</html>

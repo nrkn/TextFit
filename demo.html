@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>TextFit Demo</title>
+    <link rel="stylesheet" href="demo.css" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script src="http://static.tumblr.com/xanrkca/9iTl6m5f9/jquery.ba-resize.min.js"></script>
+    <script src="http://static.tumblr.com/xanrkca/c7gl6m97y/jquery.ia.textfit.js"></script>
+    <script>
+      $(function(){
+        function fit() {
+          var elems = "h1, h2, span";
+          
+          $( "body" ).unbind( "resize" );
+          $( elems ).textFit();
+          $( "body" ).bind( "resize", fit );
+        }
+        
+        fit();
+      });
+    </script>
+    <!--[if lte IE 8]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->  
+  </head>
+  <body>
+    <header>
+      <hgroup>
+        <h1>TextFit jQuery Plugin Demo</h1>
+        <h2>By Nik Coughlin, Information Age Ltd</h2>
+      </hgroup>
+    </header>
+    <p class="half first white">
+      <span>of an to</span> <span>the it</span>
+    </p>
+    <p class="half red last">
+      <span>to of an</span> <span>it the</span>
+    </p>
+    <p><span>The text expands or contracts</span> <span>to fit the available width</span></p>
+    <p class="half first red">
+      <span>an to of</span> <span>it the</span>
+    </p>
+    <p class="half white last">
+      <span>to an of</span> <span>the it</span>
+    </p>
+    <p class="white"><span>nik.coughlin@informationage.co.nz +6493090234</span></p>
+    <p class="red"><span>http://informationage.co.nz/</span></p>
+  </body>
+</html>
